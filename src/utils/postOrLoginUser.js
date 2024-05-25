@@ -1,6 +1,7 @@
 const postOrLoginUser = async (user) => {
   try {
-    const res = await fetch("http://localhost:3000/users", {
+    const server = import.meta.env.VITE_SERVER;
+    const res = await fetch(`${server}users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

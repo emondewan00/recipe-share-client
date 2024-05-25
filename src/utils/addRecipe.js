@@ -1,5 +1,6 @@
 const addRecipe = async (event) => {
   try {
+    const server = import.meta.env.VITE_SERVER;
     const form = new FormData(event.target);
     const values = Object.fromEntries(form.entries());
     const imageFile = new FormData();
@@ -15,7 +16,7 @@ const addRecipe = async (event) => {
     const image = await uploadImage.json();
 
     if (image.status === 200) {
-      const postRecipe = await fetch("http://localhost:3000/recipes", {
+      const postRecipe = await fetch(`${server}"recipes"`, {
         method: "POST",
         body: JSON.stringify({
           ...values,
@@ -38,25 +39,3 @@ const addRecipe = async (event) => {
 
 export default addRecipe;
 
-//fetch("https://api.imgbb.com/1/upload?key=37f1800ef998ff4c969f91bfda497c58", {
-//     method: "POST",
-//     body: image,
-//   })
-//     .then((res) => res.json())
-//     .then((data) => {
-//       fetch("http://localhost:3000/recipes", {
-//         method: "POST",
-//         body: JSON.stringify({
-//           ...values,
-//           image: data.data.url,
-//         }),
-//         headers: {
-//           "Content-Type": "application/json",
-//           authorization: localStorage.getItem("token"),
-//         },
-//       })
-//         .then((res) => res.json())
-//         .then((data) => {
-//           console.log(data);
-//         });
-//     });

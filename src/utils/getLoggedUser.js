@@ -1,8 +1,9 @@
 const getLoggedUser = async () => {
   try {
+    const server = import.meta.env.VITE_SERVER;
     const token = localStorage.getItem("token");
     if (!token || token === "undefined") return;
-    const res = await fetch(`http://localhost:3000/users/me`, {
+    const res = await fetch(`${server}users/me`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
