@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+  @apply py-2 bg-[#eb4a36] px-6 rounded-md text-white content-center;
+}
+
+nav .active {
+  @apply text-[#eb4a36] font-medium;
+}
+
+
+.coin {
+  box-shadow: 
+  -20px -20px 60px white inset,
+  20px 20px 60px #BEBEBE inset,
+  -10px -10px 20px rgba(255, 255, 255, 0.5) inset,
+  10px 10px 20px rgba(190, 190, 190, 0.5) inset;
+}
