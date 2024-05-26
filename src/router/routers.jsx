@@ -5,6 +5,7 @@ import PrivateRoute from "./PrivateRoute";
 import AddRecipe from "../page/AddRecipe";
 import DetailsPage from "../page/Details";
 import AllRecipesPage from "../page/Recipes";
+import RecipesProvider from "../provider/RecipesProvider";
 
 const routers = createBrowserRouter([
   {
@@ -35,7 +36,11 @@ const routers = createBrowserRouter([
       },
       {
         path: "/recipes",
-        element: <AllRecipesPage />,
+        element: (
+          <RecipesProvider>
+            <AllRecipesPage />
+          </RecipesProvider>
+        ),
       },
     ],
   },

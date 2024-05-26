@@ -1,59 +1,70 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import purchaseRecipe from "../../utils/purchaseRecipe";
 
 // eslint-disable-next-line react/prop-types
 const RecipeCard = ({ recipe }) => {
-  const { currentUser } = useAuth();
+  const { currentUser, setCurrentUser } = useAuth();
   const navigate = useNavigate();
-  const { creatorEmail, _id } = recipe || {};
-  const onClick = () => {
+  const {
+    creatorEmail,
+    _id,
+    image,
+    name,
+    category,
+    purchased_by,
+    watchCount,
+    country,
+    details,
+  } = recipe || {};
+  const onClick = async () => {
     if (!currentUser) {
       return;
-    } else if (creatorEmail === currentUser?.email) {
+    } else if ("creatorEmail" === currentUser?.email) {
       navigate(`/recipeDetails/${_id}`);
       return;
     } else if (currentUser?.coins < 10) {
       return;
     } else {
-      confirm("Are you sure you want to buy this recipe?");
-      navigate(`/recipeDetails/${_id}`);
+      const confirmText = "Are you sure you want to buy this recipe?";
+      if (confirm(confirmText)) {
+        setCurrentUser({ ...currentUser, coins: currentUser?.coins - 10 });
+        purchaseRecipe({
+          recipe_id: _id,
+          email: currentUser?.email,
+          creatorEmail: creatorEmail,
+        });
+        // navigate(`/recipeDetails/${_id}`);
+      }
     }
   };
   return (
-    <div className="mx-auto bg-white rounded-lg shadow-md overflow-hidden p-4">
+    <div className="mx-auto bg-white shadow-md overflow-hidden p-4">
       <div className="flex flex-col md:flex-row">
-        <img
-          className=" object-cover "
-          src="https://placehold.co/250x210"
-          alt="Chocolate Earl Grey Pots de Creme "
-        />
+        <img className=" object-cover " src={image} alt={name} />
         <div className="p-4">
-          <h2 className="text-xl font-semibold ">
-            Chocolate Earl Grey Pots de Creme Recipe
-          </h2>
+          <h2 className="text-xl font-semibold ">{name}</h2>
           <p className="text-sm text-zinc-600">
             <span className="font-bold">Category:</span>
-            <span className="text-green-600 ml-1">Chocolate</span>
+            <span className="text-green-600 ml-1">{category}</span>
             <span className="ml-4 font-bold">Country:</span>
-            <span className="text-green-600 ml-1">American</span>
+            <span className="text-green-600 ml-1">{country}</span>
           </p>
           <div className="flex items-center mt-2">
             <span className=" text-zinc-600 font-semibold ">Total Sells:</span>
-            <span className=" text-blue-700 ml-1">44</span>
+            <span className=" text-blue-700 ml-1">
+              {purchased_by?.length || 0}
+            </span>
             <span className=" text-zinc-600 font-semibold ml-4">
               Total Watch:
             </span>
-            <span className=" text-blue-700 ml-1">44</span>
+            <span className=" text-blue-700 ml-1">{watchCount}</span>
           </div>
           <p className="mt-1">
             <span className="text-zinc-600 font-semibold">Creator Name:</span>
-            <span> {currentUser?.displayName}</span>
+            <span> {creatorEmail}</span>
           </p>
-          <p className="mt-2 text-zinc-700 text-sm">
-            2 cups cream 120 grams dark chocolate, chopped 2 bags of earl grey
-            tea 6 egg yolks 3 Tablespoons of sugar 1/2 cup whipping cream 2
-            Tablespoons powdered sugar 2-3 Teaspoons cointreau
-          </p>
+          <p className="mt-2 text-zinc-700 text-sm">{details}</p>
           <div className="flex gap-x-4">
             <button className="mt-4 bg-gray-100  w-28 py-2 gap-x-2 rounded   flex justify-center items-center border-blue-300 border text-blue-600 hover:scale-90 duration-150">
               <svg
@@ -66,7 +77,10 @@ const RecipeCard = ({ recipe }) => {
               </svg>
               <span className="font-semibold text-gray-700">Like</span>
             </button>
-            <button className="mt-4 bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700">
+            <button
+              onClick={onClick}
+              className="mt-4 bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700"
+            >
               View The Recipe
             </button>
           </div>

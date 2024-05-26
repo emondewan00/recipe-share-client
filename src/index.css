@@ -1,6 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
 
 .btn {
   @apply py-2 bg-[#eb4a36] px-6 rounded-md text-white content-center;
@@ -10,11 +16,8 @@ nav .active {
   @apply text-[#eb4a36] font-medium;
 }
 
-
 .coin {
-  box-shadow: 
-  -20px -20px 60px white inset,
-  20px 20px 60px #BEBEBE inset,
-  -10px -10px 20px rgba(255, 255, 255, 0.5) inset,
-  10px 10px 20px rgba(190, 190, 190, 0.5) inset;
+  box-shadow: -20px -20px 60px white inset, 20px 20px 60px #bebebe inset,
+    -10px -10px 20px rgba(255, 255, 255, 0.5) inset,
+    10px 10px 20px rgba(190, 190, 190, 0.5) inset;
 }

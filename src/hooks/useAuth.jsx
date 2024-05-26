@@ -2,7 +2,7 @@ import { useContext } from "react";
 import authContext from "../context";
 
 const useAuth = () => {
-  const { currentUser, signInWithGoogle, logOut, loading } =
+  const { currentUser, signInWithGoogle, logOut, loading, setCurrentUser } =
     useContext(authContext);
 
   return {
@@ -10,6 +10,7 @@ const useAuth = () => {
     signInWithGoogle,
     logOut,
     loading,
+    setCurrentUser,
   };
 };
 

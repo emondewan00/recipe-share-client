@@ -10,13 +10,13 @@ const addRecipe = async (event) => {
       "https://api.imgbb.com/1/upload?key=37f1800ef998ff4c969f91bfda497c58",
       {
         method: "POST",
-        body: "image",
+        body: imageFile,
       }
     );
     const image = await uploadImage.json();
 
     if (image.status === 200) {
-      const postRecipe = await fetch(`${server}"recipes"`, {
+      const postRecipe = await fetch(`${server}recipes`, {
         method: "POST",
         body: JSON.stringify({
           ...values,
@@ -38,4 +38,3 @@ const addRecipe = async (event) => {
 };
 
 export default addRecipe;
-

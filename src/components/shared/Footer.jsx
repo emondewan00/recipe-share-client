@@ -9,24 +9,34 @@ const Footer = () => {
             <h1 className=" text-xl font-semibold"> Emon Hossain</h1>
             <p>Full Stack Developer (MERN) </p>
             <div className="flex  gap-x-4 mt-2">
-              <img
-                src="/facebook.svg"
-                className="size-4"
-                alt="facebook icon "
-              />
-              <img src="/twitter.svg" className="size-4" alt="twitter icon " />
-              <img
-                src="/linkedin.svg"
-                className="size-4"
-                alt="linkedin icon "
-              />
+              <Link to="https://www.facebook.com/dewanmohammademon">
+                <img
+                  src="/facebook.svg"
+                  className="size-4"
+                  alt="facebook icon "
+                />
+              </Link>
+              <Link to="https://github.com/emondewan00">
+                <img src="/github.svg" className="size-4" alt="github icon " />
+              </Link>
+              <Link to="https://www.linkedin.com/in/dewan-mohammad-emon/">
+                <img
+                  src="/linkedin.svg"
+                  className="size-4"
+                  alt="linkedin icon "
+                />
+              </Link>
             </div>
           </div>
           <div className="*:block space-y-1">
             <h1 className="text-xl font-semibold">Links</h1>
-            <Link to="/">Facebook</Link>
-            <Link to="/about">LinkedIn</Link>
-            <Link to="/recipes">GitHub</Link>
+            <Link to="https://www.facebook.com/dewanmohammademon">
+              Facebook
+            </Link>
+            <Link to="https://www.linkedin.com/in/dewan-mohammad-emon/">
+              LinkedIn
+            </Link>
+            <Link to="https://github.com/emondewan00">GitHub</Link>
             <Link to="https://dewanemon.vercel.app/">Portfolio</Link>
           </div>
           <div className="*:block space-y-1">
@@ -38,7 +48,6 @@ const Footer = () => {
               dowanmohammademon@gmail.com
             </Link>
             <p>Dhaka, Bangladesh</p>
-            
           </div>
         </div>
         <div className="flex  gap-x-4 justify-center ">

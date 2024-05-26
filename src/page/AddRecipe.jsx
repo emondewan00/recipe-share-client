@@ -56,10 +56,15 @@ const AddRecipe = () => {
               required
               className="w-full bg-gray-100 p-3 border-none focus:outline-indigo-300"
             >
-              <option value="category 1">Category</option>
-              <option value="category 2">Category</option>
-              <option value="category 3">Category</option>
-              <option value="category 4">Category</option>
+              <option value="" hidden>
+                Please Select category
+              </option>
+              <option value="pasta">Pasta</option>
+              <option value="pizza">Pizza</option>
+              <option value="pastry">Pastry</option>
+              <option value="quiche"> Quiche</option>
+              <option value="salad">Salad</option>
+              <option value="dessert">Dessert</option>
             </select>
           </div>
         </div>

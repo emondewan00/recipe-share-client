@@ -6,8 +6,8 @@ const NavBar = () => {
   const { currentUser, logOut } = useAuth();
   return (
     <nav className="bg-white shadow-md">
-      <div className="container items-center flex justify-between py-6">
-        <Link to="/">Hello</Link>
+      <div className="container items-center flex justify-between py-6 ">
+        <Link to="/">RecipeRepo</Link>
 
         <ul className="flex items-center gap-4 text-sm text-gray-500">
           <li className="py-2 active">
@@ -16,10 +16,6 @@ const NavBar = () => {
 
           <li className="py-2">
             <Link to="/recipes">Recipes</Link>
-          </li>
-
-          <li className="py-2">
-            <Link to="/">About us</Link>
           </li>
 
           {currentUser ? (
